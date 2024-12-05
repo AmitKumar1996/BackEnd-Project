@@ -2,6 +2,7 @@ package dev.amit.ProductService.controllers;
 
 import dev.amit.ProductService.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,18 +31,18 @@ public class ProductController {
        3. Field Method DI
     */
 
-/*
+
     // Field Method DI
      @Autowired          // agar @Autowired nhi lagayenge to bhi chale ga spring automatically put kar deta hai  in latest version of SpringBoot
     private ProductService productService;
-*/
+
 
 
 
 
 
      // Constructer Method DI(Best Approcah more redable code)
-     public ProductController(ProductService productService){
+     public ProductController(@Qualifier("FakeStoreProductService") ProductService productService){
          this.productService= productService;
      }
 

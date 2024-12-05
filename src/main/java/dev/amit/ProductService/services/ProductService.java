@@ -4,5 +4,7 @@ import dev.amit.ProductService.models.Product;
 
 public interface ProductService {
 
-     Product SgetProductById(Long Id);
+
+
+    Product getProductById(Long Id);
 }
