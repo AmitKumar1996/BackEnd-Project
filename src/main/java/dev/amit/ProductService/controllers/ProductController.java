@@ -42,6 +42,8 @@ public class ProductController {
 
 
      // Constructer Method DI(Best Approcah more redable code)
+    // we can also declare variable in application.property file to make dynamic use of resolving ambiguaty using    @Value("${FakeStoreProductService}")
+    // Latest Version of Spring me @Auotowired ka koe farke nhi parta hai
      public ProductController(@Qualifier("FakeStoreProductService") ProductService productService){
          this.productService= productService;
      }
