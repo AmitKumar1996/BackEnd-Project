@@ -1,6 +1,8 @@
 package dev.amit.ProductService.services;
 
+import dev.amit.ProductService.models.Product;
+
 public interface ProductService {
 
-    void SgetProductById(Long Id);
+     Product SgetProductById(Long Id);
 }
