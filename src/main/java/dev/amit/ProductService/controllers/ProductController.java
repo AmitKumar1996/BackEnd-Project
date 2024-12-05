@@ -13,6 +13,7 @@ import java.util.UUID;
 
 public class ProductController {
 // localhost:8080/products/123
+// localhost:8080/product?id=123
     @GetMapping
     public void getAllProducts(){
 
