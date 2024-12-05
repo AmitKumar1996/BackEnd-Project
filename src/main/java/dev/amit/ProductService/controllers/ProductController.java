@@ -32,7 +32,7 @@ public class ProductController {
 
 /*
     // Field Method DI
-     @Autowired          // agar @Autowired nhi lagayenge to bhi chale ga spring automatically put in latest version
+     @Autowired          // agar @Autowired nhi lagayenge to bhi chale ga spring automatically put kar deta hai  in latest version of SpringBoot
     private ProductService productService;
 */
 
@@ -40,7 +40,7 @@ public class ProductController {
 
 
 
-     // Constructer Method DI(Best Approcah more redable)
+     // Constructer Method DI(Best Approcah more redable code)
      public ProductController(ProductService productService){
          this.productService= productService;
      }
