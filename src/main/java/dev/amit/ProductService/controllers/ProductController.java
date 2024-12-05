@@ -32,7 +32,7 @@ public class ProductController {
 
 /*
     // Field Method DI
-     @Autowired          // agar @Autowired lagayenge to bhi chale ga spring automatically put in latest version
+     @Autowired          // agar @Autowired nhi lagayenge to bhi chale ga spring automatically put in latest version
     private ProductService productService;
 */
 
