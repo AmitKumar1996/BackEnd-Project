@@ -1,14 +1,13 @@
 package dev.amit.ProductService.controllers;
 
+import dev.amit.ProductService.dtos.GenericProductDto;
 import dev.amit.ProductService.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.rmi.server.UID;
-import java.security.PrivateKey;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 @RestController
 
@@ -18,12 +17,12 @@ import java.util.UUID;
 public class ProductController {
 
 
-
+    Logger logger = Logger.getLogger(getClass().getName());
 
 
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
+    //* Every Anotation/ Spatial classes  ka spring boot  object create karta hai
     /*
        Dependency Injection
        1. Setter Method DI
@@ -33,7 +32,9 @@ public class ProductController {
 
 
     // Field Method DI
-     @Autowired          // agar @Autowired nhi lagayenge to bhi chale ga spring automatically put kar deta hai  in latest version of SpringBoot
+//    @Autowired
+//    @Qualifier("fakestoreproductservice")
+//    // agar @Autowired nhi lagayenge to bhi chale ga spring automatically put kar deta hai  in latest version of SpringBoot
     private ProductService productService;
 
 
@@ -44,7 +45,9 @@ public class ProductController {
      // Constructer Method DI(Best Approcah more redable code)
     // we can also declare variable in application.property file to make dynamic use of resolving ambiguaty using    @Value("${FakeStoreProductService}")
     // Latest Version of Spring me @Auotowired ka koe farke nhi parta hai
-     public ProductController(@Qualifier("FakeStoreProductService") ProductService productService){
+     @Autowired
+
+     public ProductController(@Qualifier("fakestoreproductservice") ProductService productService) {
          this.productService= productService;
      }
 
@@ -52,7 +55,7 @@ public class ProductController {
 
 
 /*
-     // Seter Method DI
+     // Setter Method DI
     @Autowired
     public void setProductService(ProductService productService){
         this.productService = productService;
@@ -67,15 +70,17 @@ public class ProductController {
 // localhost:8080/product?id=123
     @GetMapping
     public void getAllProducts(){
-
+        System.out.println("c1");
     }
 
     @GetMapping("/{id}")
-    public String getProductById( @PathVariable("id") Long id){
-
-        return "Here is the product Id : "+id;
+    public GenericProductDto getProductById(@PathVariable("id") Long id) {
+        // System.out.println("controller");
+        logger.info("controller");
+        return productService.getProductById(id);
 
     }
+    // Hello changes
 
     @DeleteMapping("/{id}")
     public void deleteProductById(){

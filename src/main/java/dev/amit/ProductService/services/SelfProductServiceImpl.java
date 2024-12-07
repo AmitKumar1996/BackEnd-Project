@@ -1,13 +1,13 @@
 package dev.amit.ProductService.services;
 
-import dev.amit.ProductService.models.Product;
+import dev.amit.ProductService.dtos.GenericProductDto;
 import org.springframework.stereotype.Service;
 
-@Service("SelfProduceServiceImpl")
+@Service("selfproduceserviceimpl")
 public class SelfProductServiceImpl  implements  ProductService{
 
     @Override
-    public Product getProductById(Long Id) {
+    public GenericProductDto getProductById(Long Id) {
         return null;
     }
 }

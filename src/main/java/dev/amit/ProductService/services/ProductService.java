@@ -1,10 +1,10 @@
 package dev.amit.ProductService.services;
 
-import dev.amit.ProductService.models.Product;
+import dev.amit.ProductService.dtos.GenericProductDto;
 
 public interface ProductService {
 
 
+    GenericProductDto getProductById(Long Id);
 
-    Product getProductById(Long Id);
 }
