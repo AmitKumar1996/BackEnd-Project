@@ -87,10 +87,16 @@ public class ProductController {
 
     }
 
-    @PostMapping
-    public String createProduct(){
+    
 
-        return "Created new Prodct: "+ UUID.randomUUID();
+    @PostMapping
+    public String createProduct(@RequestBody GenericProductDto product) {
+
+        logger.info(product.getTitle());
+
+        return "Created new product with name :" + product.getTitle();
+
+        //return "Created new Prodct: "+ UUID.randomUUID();
 
 
 
