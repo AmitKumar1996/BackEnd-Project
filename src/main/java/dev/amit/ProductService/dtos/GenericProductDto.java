@@ -1,6 +1,15 @@
 package dev.amit.ProductService.dtos;
 
 public class GenericProductDto {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    private long id;
     private String title;
     private String description;
     private String image;

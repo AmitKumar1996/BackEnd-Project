@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
 import java.util.logging.Logger;
 
 @RestController
@@ -71,6 +70,7 @@ public class ProductController {
     @GetMapping
     public void getAllProducts(){
         System.out.println("c1");
+        // task 3
     }
 
     @GetMapping("/{id}")
@@ -84,17 +84,18 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public void deleteProductById(){
+        // task 2
 
     }
 
     
 
     @PostMapping
-    public String createProduct(@RequestBody GenericProductDto product) {
+    public GenericProductDto createProduct(@RequestBody GenericProductDto product) {
 
         logger.info(product.getTitle());
 
-        return "Created new product with name :" + product.getTitle();
+        return productService.createProduct(product);
 
         //return "Created new Prodct: "+ UUID.randomUUID();
 
@@ -104,6 +105,6 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public void updateProductById(){
-
+                 // task 1
     }
 }
