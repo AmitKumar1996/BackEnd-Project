@@ -2,13 +2,15 @@ package dev.amit.ProductService.services;
 
 import dev.amit.ProductService.dtos.FakeStoreProductDtos;
 import dev.amit.ProductService.dtos.GenericProductDto;
-import dev.amit.ProductService.models.Product;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service("fakestoreproductservice")
@@ -62,24 +64,39 @@ public class FakeStoreProductService implements ProductService {
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     @Override
-    public List<Product> getAllProduct() {
-
+    public List<GenericProductDto> getAllProduct() {
         RestTemplate restTemplate = restTemplateBuilder.build();
-        ResponseEntity<FakeStoreProductDtos> response = restTemplate.getForEntity(getAllProductUrl, FakeStoreProductDtos.class);
-        FakeStoreProductDtos fakeStoreProductDtos = response.getBody();
 
-        GenericProductDto product = new GenericProductDto();
+        // Fetch the list of FakeStoreProductDtos using ParameterizedTypeReference
+        ResponseEntity<List<FakeStoreProductDtos>> response = restTemplate.exchange(
+                getAllProductUrl,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<>() {}
+        );
 
-        product.setImage(fakeStoreProductDtos.getImage());
-        product.setTitle(fakeStoreProductDtos.getTitle());
-        product.setPrice(fakeStoreProductDtos.getPrice());
-        product.setCategory(fakeStoreProductDtos.getCategory());
-        product.setDescription(fakeStoreProductDtos.getDescription());
+        // Extract the body from the response
+        List<FakeStoreProductDtos> body = response.getBody();
 
-        return (List<Product>) product;
+        // Map the list of FakeStoreProductDtos to a list of GenericProductDto
+        if (body != null) {
+            return body.stream()
+                    .map(dto -> {
+                        GenericProductDto product = new GenericProductDto();
+                        product.setId(dto.getId());
+                        product.setTitle(dto.getTitle());
+                        product.setPrice(dto.getPrice());
+                        product.setDescription(dto.getDescription());
+                        product.setImage(dto.getImage());
+                        return product;
+                    })
+                    .collect(Collectors.toList());
+        }
 
-
+        // Return an empty list if the body is null
+        return List.of();
     }
+
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
@@ -108,13 +125,13 @@ public class FakeStoreProductService implements ProductService {
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-    public GenericProductDto updateProductById(Long id) {
-        RestTemplate restTemplate = restTemplateBuilder.build();
-        ResponseEntity<FakeStoreProductDtos> response = restTemplate.getForEntity(updateProductByIdUrl, FakeStoreProductDtos.class, id);
-
-
-        return product;
-    }
+//    public GenericProductDto updateProductById(Long id) {
+//        RestTemplate restTemplate = restTemplateBuilder.build();
+//        ResponseEntity<FakeStoreProductDtos> response = restTemplate.getForEntity(updateProductByIdUrl, FakeStoreProductDtos.class, id);
+//
+//
+//        return product;
+//    }
 
 
 

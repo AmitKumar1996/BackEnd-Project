@@ -1,7 +1,6 @@
 package dev.amit.ProductService.services;
 
 import dev.amit.ProductService.dtos.GenericProductDto;
-import dev.amit.ProductService.models.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +14,13 @@ public class SelfProductServiceImpl  implements  ProductService{
     }
 
     @Override
-    public List<Product> getAllProduct() {
+    public List<GenericProductDto> getAllProduct() {
         return List.of();
+    }
+
+    @Override
+    public GenericProductDto deleteProductById(Long id) {
+        return null;
     }
 
     @Override

@@ -73,12 +73,15 @@ public class ProductController {
 // localhost:8080/products/123
 // localhost:8080/product?id=123
     @GetMapping
-    public List<Product> getAllProducts(GenericProductDto product) {
-        System.out.println();
+    public List<GenericProductDto> getAllProducts() {
+       // System.out.println();
         logger.info("hi all product 1");
 
+        List<GenericProductDto> allProduct = productService.getAllProduct();
 
-        return productService.getAllProduct();
+        return allProduct;
+
+        //return productService.getAllProduct();
         //logger.info("hi all product bye");
 
 
@@ -124,18 +127,18 @@ public class ProductController {
 
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-    @PostMapping
-    public GenericProductDto createProduct(@RequestBody GenericProductDto product) {
-
-        logger.info(product.getTitle());
-
-        return productService.createProduct(product);
-
-        //return "Created new Prodct: "+ UUID.randomUUID();
-
-
-
-    }
+//    @PostMapping
+//    public GenericProductDto createProduct(@RequestBody GenericProductDto product) {
+//
+//        logger.info(product.getTitle());
+//
+//        return productService.createProduct(product);
+//
+//        //return "Created new Prodct: "+ UUID.randomUUID();
+//
+//
+//
+//    }
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
@@ -147,14 +150,14 @@ public class ProductController {
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-    @PutMapping("/{id}")
-    public GenericProductDto updateProductById(@PathVariable Long id) {
-
-
-        return productService.updateProductById(id);
-
-                 // task 1
-    }
+//    @PutMapping("/{id}")
+//    public GenericProductDto updateProductById(@PathVariable Long id) {
+//
+//
+//        return productService.updateProductById(id);
+//
+//                 // task 1
+//    }
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
