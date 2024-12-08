@@ -1,11 +1,13 @@
 package dev.amit.ProductService.controllers;
 
 import dev.amit.ProductService.dtos.GenericProductDto;
+import dev.amit.ProductService.models.Product;
 import dev.amit.ProductService.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
@@ -64,15 +66,32 @@ public class ProductController {
  /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
+//                                                                    Get All Product
 
+
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 // localhost:8080/products/123
 // localhost:8080/product?id=123
     @GetMapping
-    public void getAllProducts(){
-        System.out.println("c1");
+    public List<Product> getAllProducts(GenericProductDto product) {
+        System.out.println();
+        logger.info("hi all product 1");
+
+
+        return productService.getAllProduct();
+        //logger.info("hi all product bye");
+
+
+        // System.out.println("c1");
         // task 3
     }
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+
+//                                                                         Get Product By Id
+
+
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
     @GetMapping("/{id}")
     public GenericProductDto getProductById(@PathVariable("id") Long id) {
         // System.out.println("controller");
@@ -80,16 +99,31 @@ public class ProductController {
         return productService.getProductById(id);
 
     }
-    // Hello changes
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+    //                                                                       Delete Product By Id
+
+
+
+
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     @DeleteMapping("/{id}")
-    public void deleteProductById(){
+    public Integer deleteProductById(@PathVariable("id") Long id) {
+
+
+        return Math.toIntExact(id);
         // task 2
 
     }
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-    
 
+    //                                                                        Create Product
+
+
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
     @PostMapping
     public GenericProductDto createProduct(@RequestBody GenericProductDto product) {
 
@@ -102,9 +136,28 @@ public class ProductController {
 
 
     }
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+    //                                                                    Update Product By Id
+
+
+
+
+
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     @PutMapping("/{id}")
-    public void updateProductById(){
+    public GenericProductDto updateProductById(@PathVariable Long id) {
+
+
+        return productService.updateProductById(id);
+
                  // task 1
     }
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
 }
