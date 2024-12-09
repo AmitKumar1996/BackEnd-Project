@@ -1,10 +1,11 @@
 package dev.amit.ProductService.controllers;
 
 import dev.amit.ProductService.dtos.GenericProductDto;
-import dev.amit.ProductService.models.Product;
 import dev.amit.ProductService.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -70,24 +71,55 @@ public class ProductController {
 
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+    // GET / Products {}
+   @GetMapping
+    public List<GenericProductDto>getAllProducts(){
+
+       return productService.getAllProducts();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // localhost:8080/products/123
 // localhost:8080/product?id=123
-    @GetMapping
-    public List<GenericProductDto> getAllProducts() {
-       // System.out.println();
-        logger.info("hi all product 1");
-
-        List<GenericProductDto> allProduct = productService.getAllProduct();
-
-        return allProduct;
-
-        //return productService.getAllProduct();
-        //logger.info("hi all product bye");
-
-
-        // System.out.println("c1");
-        // task 3
-    }
+//    @GetMapping
+//    public List<GenericProductDto> getAllProducts() {
+//       // System.out.println();
+//        logger.info("hi all product 1");
+//
+//        List<GenericProductDto> allProduct = productService.getAllProduct();
+//
+//        return allProduct;
+//
+//        //return productService.getAllProduct();
+//        //logger.info("hi all product bye");
+//
+//
+//        // System.out.println("c1");
+//        // task 3
+//    }
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
@@ -111,15 +143,17 @@ public class ProductController {
 
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
-    @DeleteMapping("/{id}")
-    public Integer deleteProductById(@PathVariable("id") Long id) {
-
-
-        return Math.toIntExact(id);
-        // task 2
-
-    }
+//
+//    @DeleteMapping("/{id}")
+//    public Integer deleteProductById(@PathVariable("id") Long id) {
+//
+//
+//        return new ResponseEntity<>(productService.deleteProductById(), HttpStatus.OK
+//
+//        );
+//        // task 2
+//
+//    }
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
@@ -149,6 +183,7 @@ public class ProductController {
 
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 //    @PutMapping("/{id}")
 //    public GenericProductDto updateProductById(@PathVariable Long id) {
