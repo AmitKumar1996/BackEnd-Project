@@ -4,8 +4,6 @@ import dev.amit.ProductService.dtos.GenericProductDto;
 import dev.amit.ProductService.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +21,7 @@ public class ProductController {
 
 
 
-/*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
     //* Every Anotation/ Spatial classes  ka spring boot  object create karta hai
     /*
        Dependency Injection
@@ -40,18 +38,14 @@ public class ProductController {
     private ProductService productService;
 
 
-
-
-
-
-     // Constructer Method DI(Best Approcah more redable code)
+    // Constructer Method DI(Best Approcah more redable code)
     // we can also declare variable in application.property file to make dynamic use of resolving ambiguaty using    @Value("${FakeStoreProductService}")
     // Latest Version of Spring me @Auotowired ka koe farke nhi parta hai
-     @Autowired
+    @Autowired
 
-     public ProductController(@Qualifier("fakestoreproductservice") ProductService productService) {
-         this.productService= productService;
-     }
+    public ProductController(@Qualifier("fakestoreproductservice") ProductService productService) {
+        this.productService = productService;
+    }
 
 
 
@@ -64,7 +58,7 @@ public class ProductController {
     }
 */
 
- /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
 //                                                                    Get All Product
@@ -73,33 +67,12 @@ public class ProductController {
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     // GET / Products {}
-   @GetMapping
-    public List<GenericProductDto>getAllProducts(){
-
-       return productService.getAllProducts();
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//   @GetMapping
+//    public List<GenericProductDto>getAllProducts(){
+//
+//       return productService.getAllProducts();
+//
+//    }
 
 
 // localhost:8080/products/123
@@ -140,17 +113,18 @@ public class ProductController {
     //                                                                       Delete Product By Id
 
 
-
-
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 //
-//    @DeleteMapping("/{id}")
-//    public Integer deleteProductById(@PathVariable("id") Long id) {
-//
-//
-//        return new ResponseEntity<>(productService.deleteProductById(), HttpStatus.OK
-//
-//        );
+    @DeleteMapping("/{id}")
+    public GenericProductDto deleteProductById(@PathVariable("id") Long id) {
+
+
+        return productService.deleteProduct(id);
+
+
+    }
+
+
 //        // task 2
 //
 //    }
@@ -195,7 +169,6 @@ public class ProductController {
 //    }
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-
-
-
 }
+
+

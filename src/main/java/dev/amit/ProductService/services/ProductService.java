@@ -16,10 +16,15 @@ public interface ProductService {
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     GenericProductDto updateProductById(Long id);
 
+  //  GenericProductDto deleteProductById(Long id);
+
     GenericProductDto getProductById(Long Id);
 
     //   GenericProductDto deleteProductById();
 
    List<GenericProductDto> getAllProducts();
+
+
+  GenericProductDto deleteProduct(Long id);
 
 }

@@ -2,9 +2,13 @@ package dev.amit.ProductService.services;
 
 import dev.amit.ProductService.dtos.FakeStoreProductDtos;
 import dev.amit.ProductService.dtos.GenericProductDto;
+import dev.amit.ProductService.models.Product;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RequestCallback;
+import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -36,6 +40,26 @@ public class FakeStoreProductService implements ProductService {
 
         this.restTemplateBuilder = restTemplateBuilder;
     }
+
+    private GenericProductDto ConvertFakeStoreProductIntoGenricProduct(FakeStoreProductDtos fakeStoreProductDtos) {
+
+
+        GenericProductDto product = new GenericProductDto();
+        product.setId(fakeStoreProductDtos.getId());
+        product.setImage(fakeStoreProductDtos.getImage());
+        product.setDescription(fakeStoreProductDtos.getDescription());
+        product.setTitle(fakeStoreProductDtos.getTitle());
+        product.setPrice(fakeStoreProductDtos.getPrice());
+        product.setCategory(fakeStoreProductDtos.getCategory());
+
+        return product;
+
+    }
+
+
+
+
+
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
@@ -67,6 +91,10 @@ public class FakeStoreProductService implements ProductService {
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+
+// Method 1
+
+
     @Override
     public List<GenericProductDto> getAllProducts() {
 
@@ -77,16 +105,16 @@ public class FakeStoreProductService implements ProductService {
         for (FakeStoreProductDtos fakeStoreProductDtos : response.getBody()) {
             GenericProductDto product = new GenericProductDto();  // I converted dto that my client needed
 
-            product.setImage(fakeStoreProductDtos.getImage());
-            product.setDescription(fakeStoreProductDtos.getDescription());
-            product.setTitle(fakeStoreProductDtos.getTitle());
-            product.setPrice(fakeStoreProductDtos.getPrice());
-            product.setCategory(fakeStoreProductDtos.getCategory());
-            answer.add(product);
+
+            answer.add(ConvertFakeStoreProductIntoGenricProduct(fakeStoreProductDtos));
+
         }
         return answer;
 
     }
+
+
+    // Method 2
 
 
 //    @Override
@@ -131,10 +159,25 @@ public class FakeStoreProductService implements ProductService {
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-//    @Override
-//    public GenericProductDto deleteProductById(Long id) {
-//        return deleteProductById(fakeStoryProductServiceClient.deleteProduct(id));
-//    }
+    @Override
+    public GenericProductDto deleteProduct(Long id) {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+
+
+        RequestCallback requestCallback = restTemplate.acceptHeaderRequestCallback(FakeStoreProductDtos.class);
+        ResponseExtractor<ResponseEntity<FakeStoreProductDtos>> responseExtractor = restTemplate.responseEntityExtractor(FakeStoreProductDtos.class);
+        ResponseEntity<FakeStoreProductDtos> responce = restTemplate.execute(getProductRequstUrl, HttpMethod.DELETE, requestCallback, responseExtractor, id);
+
+        FakeStoreProductDtos fakeStoreProductDtos = responce.getBody();
+
+
+        return ConvertFakeStoreProductIntoGenricProduct(fakeStoreProductDtos);
+
+
+    }
+
+
+
 //
 //    @Override
 //    public GenericProductDto updateProductById(Long id) {
@@ -158,6 +201,8 @@ public class FakeStoreProductService implements ProductService {
 //
 //        return product;
 //    }
+
+
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -204,6 +249,7 @@ public class FakeStoreProductService implements ProductService {
         GenericProductDto product = new GenericProductDto();  // I converted dto that my client needed
 
        product.setImage(fakeStoreProductDtos.getImage());
+       product.setId(fakeStoreProductDtos.getId());
         product.setDescription(fakeStoreProductDtos.getDescription());
         product.setTitle(fakeStoreProductDtos.getTitle());
         product.setPrice(fakeStoreProductDtos.getPrice());
