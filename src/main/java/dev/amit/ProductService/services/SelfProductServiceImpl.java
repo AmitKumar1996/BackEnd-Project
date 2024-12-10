@@ -2,7 +2,6 @@ package dev.amit.ProductService.services;
 
 import dev.amit.ProductService.dtos.GenericProductDto;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 

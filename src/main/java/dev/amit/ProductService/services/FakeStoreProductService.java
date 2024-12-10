@@ -2,7 +2,6 @@ package dev.amit.ProductService.services;
 
 import dev.amit.ProductService.dtos.FakeStoreProductDtos;
 import dev.amit.ProductService.dtos.GenericProductDto;
-import dev.amit.ProductService.models.Product;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +42,6 @@ public class FakeStoreProductService implements ProductService {
 
     private GenericProductDto ConvertFakeStoreProductIntoGenricProduct(FakeStoreProductDtos fakeStoreProductDtos) {
 
-
         GenericProductDto product = new GenericProductDto();
         product.setId(fakeStoreProductDtos.getId());
         product.setImage(fakeStoreProductDtos.getImage());
@@ -51,6 +49,7 @@ public class FakeStoreProductService implements ProductService {
         product.setTitle(fakeStoreProductDtos.getTitle());
         product.setPrice(fakeStoreProductDtos.getPrice());
         product.setCategory(fakeStoreProductDtos.getCategory());
+
 
         return product;
 

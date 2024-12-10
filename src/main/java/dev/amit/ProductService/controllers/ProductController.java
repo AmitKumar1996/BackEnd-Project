@@ -4,9 +4,10 @@ import dev.amit.ProductService.dtos.GenericProductDto;
 import dev.amit.ProductService.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
@@ -116,10 +117,10 @@ public class ProductController {
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 //
     @DeleteMapping("/{id}")
-    public GenericProductDto deleteProductById(@PathVariable("id") Long id) {
+    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) {
 
+        return new ResponseEntity<>(productService.deleteProduct(id), HttpStatus.NOT_FOUND);
 
-        return productService.deleteProduct(id);
 
 
     }
@@ -165,7 +166,7 @@ public class ProductController {
 //
 //        return productService.updateProductById(id);
 //
-//                 // task 1
+//                 // Task -1
 //    }
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
