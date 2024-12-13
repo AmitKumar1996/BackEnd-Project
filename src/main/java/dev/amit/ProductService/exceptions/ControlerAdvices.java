@@ -17,4 +17,26 @@ public class ControlerAdvices {
 
 
     }
+
+
+    @ExceptionHandler(ArrayIndexOutOfBoundsException.class)
+    private ResponseEntity<ExceptionDto> handelArrayIndexOutOfBoundsException(
+            ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException
+    ) {
+        // System.out.println("Not found Exception Happend");
+
+        return new ResponseEntity(new ExceptionDto(HttpStatus.NOT_FOUND, arrayIndexOutOfBoundsException.getMessage()), HttpStatus.NOT_FOUND);
+
+
+    }
+
+
+//    @ExceptionHandler(Exception.class)
+//    private ResponseEntity<ExceptionDto> handelGlobalExceptions(Exception exception) {
+//        // System.out.println("Not found Exception Happend");
+//
+//        return new ResponseEntity(new ExceptionDto(HttpStatus.NOT_FOUND, Exception.class), HttpStatus.NOT_FOUND);
+//
+//
+//    }
 }
