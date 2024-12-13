@@ -1,6 +1,8 @@
 package dev.amit.ProductService.controllers;
 
+import dev.amit.ProductService.dtos.ExceptionDto;
 import dev.amit.ProductService.dtos.GenericProductDto;
+import dev.amit.ProductService.exceptions.NotFoundException;
 import dev.amit.ProductService.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -76,7 +78,7 @@ public class ProductController {
 //    }
 
 
-// localhost:8080/products/123
+ //localhost:8080/products/123
 // localhost:8080/product?id=123
 //    @GetMapping
 //    public List<GenericProductDto> getAllProducts() {
@@ -102,8 +104,8 @@ public class ProductController {
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
     @GetMapping("/{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id) {
-        // System.out.println("controller");
+    public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException {
+        System.out.println("controller");
         logger.info("controller");
         return productService.getProductById(id);
 
@@ -117,10 +119,24 @@ public class ProductController {
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 //
     @DeleteMapping("/{id}")
-    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) {
+    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) throws NotFoundException {
 
-        return new ResponseEntity<>(productService.deleteProduct(id), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(productService.deleteProduct(id), HttpStatus.OK);
 
+
+
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    private ResponseEntity<ExceptionDto> handelNotFoundException(
+            NotFoundException notFoundException
+    ){
+      // System.out.println("Not found Exception Happend");
+
+        return new ResponseEntity(
+                new ExceptionDto(HttpStatus.NOT_FOUND, notFoundException.getMessage()),
+                HttpStatus.NOT_FOUND
+        );
 
 
     }
@@ -128,7 +144,7 @@ public class ProductController {
 
 //        // task 2
 //
-//    }
+//
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
@@ -136,18 +152,18 @@ public class ProductController {
 
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-//    @PostMapping
-//    public GenericProductDto createProduct(@RequestBody GenericProductDto product) {
-//
-//        logger.info(product.getTitle());
-//
-//        return productService.createProduct(product);
-//
-//        //return "Created new Prodct: "+ UUID.randomUUID();
-//
-//
-//
-//    }
+    @PostMapping
+    public GenericProductDto createProduct(@RequestBody GenericProductDto product)  throws NotFoundException{
+
+        logger.info(product.getTitle());
+
+        return productService.createProduct(product);
+
+        //return "Created new Prodct: "+ UUID.randomUUID();
+
+
+
+    }
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
@@ -157,7 +173,7 @@ public class ProductController {
 
 
 
-    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    /*-------------------------------`----------------------------------------------------------------------------------------------------------------------------*/
 
 
 //    @PutMapping("/{id}")

@@ -7,8 +7,16 @@ public class ExceptionDto {
     private HttpStatus errorCode;
     private String message;
 
-    public void ExceptionDato(HttpStatus status, String message){
 
+    // constructor
+    public ExceptionDto(HttpStatus errorCode, String message) {
+        this.errorCode = errorCode;
+        this.message = message;
+    }
+
+    public void ExceptionDato(HttpStatus status, String message){
+         this.errorCode = status;
+         this.message = message;
     }
 
 

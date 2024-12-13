@@ -1,6 +1,7 @@
 package dev.amit.ProductService.services;
 
 import dev.amit.ProductService.dtos.GenericProductDto;
+import dev.amit.ProductService.exceptions.NotFoundException;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface ProductService {
 
   //  GenericProductDto deleteProductById(Long id);
 
-    GenericProductDto getProductById(Long Id);
+    GenericProductDto getProductById(Long Id) throws NotFoundException;
 
     //   GenericProductDto deleteProductById();
 

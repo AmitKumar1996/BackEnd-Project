@@ -2,10 +2,12 @@ package dev.amit.ProductService.services;
 
 import dev.amit.ProductService.dtos.FakeStoreProductDtos;
 import dev.amit.ProductService.dtos.GenericProductDto;
+import dev.amit.ProductService.exceptions.NotFoundException;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestTemplate;
@@ -176,6 +178,11 @@ public class FakeStoreProductService implements ProductService {
     }
 
 
+//    @ExceptionHandler(NotFoundException.class)
+//    private void handelNotFoundException() {
+//        System.out.println("Not Found Exception happened");
+//    }
+
 
 //
 //    @Override
@@ -233,28 +240,41 @@ public class FakeStoreProductService implements ProductService {
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     @Override
-    public GenericProductDto getProductById(Long id) {
+    public GenericProductDto getProductById(Long id) throws NotFoundException {
 
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDtos> response =
                 restTemplate.getForEntity(getProductRequstUrl, FakeStoreProductDtos.class, id);
-        //response.getStatusCode();
 
         System.out.println("*******");
         FakeStoreProductDtos fakeStoreProductDtos = response.getBody();
 
-        System.out.println("hhhh" + fakeStoreProductDtos.getImage());
+    //    System.out.println("hhhh" + fakeStoreProductDtos.getId());
 
-        GenericProductDto product = new GenericProductDto();  // I converted dto that my client needed
 
-       product.setImage(fakeStoreProductDtos.getImage());
-       product.setId(fakeStoreProductDtos.getId());
-        product.setDescription(fakeStoreProductDtos.getDescription());
-        product.setTitle(fakeStoreProductDtos.getTitle());
-        product.setPrice(fakeStoreProductDtos.getPrice());
-        product.setCategory(fakeStoreProductDtos.getCategory());
+        if (fakeStoreProductDtos == null) {
 
-        return product;
+            System.out.println("Exception");
+            throw new NotFoundException("Product with id: " + id + " doesn't exist.");
+
+        }
+
+
+
+
+
+
+
+//        GenericProductDto product = new GenericProductDto();  // I converted dto that my client needed
+//
+//       product.setImage(fakeStoreProductDtos.getImage());
+//       product.setId(fakeStoreProductDtos.getId());
+//        product.setDescription(fakeStoreProductDtos.getDescription());
+//        product.setTitle(fakeStoreProductDtos.getTitle());
+//        product.setPrice(fakeStoreProductDtos.getPrice());
+//        product.setCategory(fakeStoreProductDtos.getCategory());
+
+        return ConvertFakeStoreProductIntoGenricProduct(fakeStoreProductDtos);
     }
 
 //    @Override
