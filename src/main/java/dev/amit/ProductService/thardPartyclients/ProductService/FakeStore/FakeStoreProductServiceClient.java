@@ -2,6 +2,7 @@ package dev.amit.ProductService.thardPartyclients.ProductService.FakeStore;
 
 import dev.amit.ProductService.dtos.GenericProductDto;
 import dev.amit.ProductService.exceptions.NotFoundException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -50,11 +51,23 @@ public class FakeStoreProductServiceClient {
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     private RestTemplateBuilder restTemplateBuilder;
-    private String getProductRequstUrl = "https://fakestoreapi.com/products/{id}";
-    private String ProductResquestBaseUrl = "https://fakestoreapi.com/products";
+  //  private String getProductRequstUrl = "https://fakestoreapi.com/products/{id}";
+  //  private String ProductResquestBaseUrl = "https://fakestoreapi.com/products";
     //   private String getAllProductUrl = "https://fakestoreapi.com/products";
     private String deleteAllProductUrl = "https://fakestoreapi.com/products/{id}";
     private String updateProductByIdUrl = "https://fakestoreapi.com/products/{id}";
+    @Value("${fakestore.api.url}")
+    private String fakestoreApiUrl;
+
+    @Value("${fakestore.api.paths.product}")
+    private String fakeStoreProductApi;
+
+
+    private String getProductRequstUrl = "https://fakestoreapi.com/products/{id}";
+    private String ProductResquestBaseUrl = "https://fakestoreapi.com/products";
+
+
+
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
