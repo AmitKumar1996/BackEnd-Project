@@ -1,4 +1,4 @@
-package dev.amit.ProductService.dtos;
+package dev.amit.ProductService.thardPartyclients.ProductService.FakeStore;
 
 public class FakeStoreProductDtos {
     private Long id;

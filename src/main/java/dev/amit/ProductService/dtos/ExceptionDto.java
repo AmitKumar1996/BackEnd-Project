@@ -1,7 +1,11 @@
 package dev.amit.ProductService.dtos;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+@Getter
+@AllArgsConstructor
 
 public class ExceptionDto {
     private HttpStatus errorCode;
@@ -14,11 +18,10 @@ public class ExceptionDto {
         this.message = message;
     }
 
-    public void ExceptionDato(HttpStatus status, String message){
-         this.errorCode = status;
-         this.message = message;
+    public void ExceptionDato(HttpStatus status, String message) {
+        this.errorCode = status;
+        this.message = message;
     }
-
 
 
     public String getMessage() {
@@ -28,7 +31,6 @@ public class ExceptionDto {
     public void setMessage(String message) {
         this.message = message;
     }
-
 
 
     public HttpStatus getErrorCode() {

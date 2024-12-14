@@ -176,14 +176,14 @@ public class ProductController {
     /*-------------------------------`----------------------------------------------------------------------------------------------------------------------------*/
 
 
-//    @PutMapping("/{id}")
-//    public GenericProductDto updateProductById(@PathVariable Long id) {
-//
-//
-//        return productService.updateProductById(id);
-//
-//                 // Task -1
-//    }
+    @PutMapping("/{id}")
+    public GenericProductDto updateProductById(@PathVariable Long id) {
+
+
+        return productService.updateProductById(id);
+
+                 // Task -1
+    }
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 }

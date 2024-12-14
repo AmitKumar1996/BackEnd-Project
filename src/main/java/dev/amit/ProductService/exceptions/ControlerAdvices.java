@@ -1,11 +1,15 @@
 package dev.amit.ProductService.exceptions;
 
 import dev.amit.ProductService.dtos.ExceptionDto;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 // Jb bhi controller apna kam khatam karta hai to jo kuch bhi vo return karta hai vo Advices hoto huye jata hai agar exceptions aata hai to usi me handel hao jata hai
+@Data
 @ControllerAdvice
 public class ControlerAdvices {
 
