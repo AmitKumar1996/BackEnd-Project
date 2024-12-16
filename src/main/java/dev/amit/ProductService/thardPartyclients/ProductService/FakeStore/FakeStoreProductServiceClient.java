@@ -63,8 +63,8 @@ public class FakeStoreProductServiceClient {
     private String fakeStoreProductApi;
 
 
-    private String getProductRequstUrl = "https://fakestoreapi.com/products/{id}";
-    private String ProductResquestBaseUrl = "https://fakestoreapi.com/products";
+    private String getProductRequstUrl = fakestoreApiUrl +  fakeStoreProductApi +"{/id}";
+    private String ProductResquestBaseUrl = fakestoreApiUrl + fakeStoreProductApi;
 
 
 
