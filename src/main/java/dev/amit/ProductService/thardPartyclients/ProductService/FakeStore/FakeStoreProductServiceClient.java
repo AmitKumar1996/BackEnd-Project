@@ -40,10 +40,6 @@ public class FakeStoreProductServiceClient {
 
 
 
-    public FakeStoreProductServiceClient(RestTemplateBuilder restTemplateBuilder) {
-
-        this.restTemplateBuilder = restTemplateBuilder;
-    }
 
 
     //                                   API URL
@@ -56,6 +52,8 @@ public class FakeStoreProductServiceClient {
     //   private String getAllProductUrl = "https://fakestoreapi.com/products";
     private String deleteAllProductUrl = "https://fakestoreapi.com/products/{id}";
     private String updateProductByIdUrl = "https://fakestoreapi.com/products/{id}";
+
+
     @Value("${fakestore.api.url}")
     private String fakestoreApiUrl;
 
@@ -63,8 +61,24 @@ public class FakeStoreProductServiceClient {
     private String fakeStoreProductApi;
 
 
-    private String getProductRequstUrl = fakestoreApiUrl +  fakeStoreProductApi +"{/id}";
-    private String ProductResquestBaseUrl = fakestoreApiUrl + fakeStoreProductApi;
+    private String getProductRequstUrl;
+    private String ProductResquestBaseUrl;
+
+
+    public FakeStoreProductServiceClient(RestTemplateBuilder restTemplateBuilder, @Value("${fakestore.api.url}") String fakestoreApiUrl,
+
+                                         @Value("${fakestore.api.paths.product}") String fakeStoreProductApi) {
+        System.out.println("tango in");
+
+        this.restTemplateBuilder = restTemplateBuilder;
+        this.getProductRequstUrl = fakestoreApiUrl + fakeStoreProductApi + "/{id}";
+        this.ProductResquestBaseUrl = fakestoreApiUrl + fakeStoreProductApi;
+        System.out.println(this.getProductRequstUrl);
+        System.out.println(this.ProductResquestBaseUrl);
+
+    }
+
+
 
 
 
@@ -148,11 +162,13 @@ public class FakeStoreProductServiceClient {
 
 
     public FakeStoreProductDtos getProductById(Long id) throws NotFoundException {
+        System.out.println("**************&&&&&&&&&&&&&&&&&&&&&&&************************" + id);
+
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDtos> response =
                 restTemplate.getForEntity(getProductRequstUrl, FakeStoreProductDtos.class, id);
 
-        System.out.println("*******");
+        System.out.println("**************&&&&&&&&&&&&&&&&&&&&&&&************************" + id + 1);
         FakeStoreProductDtos fakeStoreProductDtos = response.getBody();
 
         //    System.out.println("hhhh" + fakeStoreProductDtos.getId());

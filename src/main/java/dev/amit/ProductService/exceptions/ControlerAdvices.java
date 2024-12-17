@@ -13,26 +13,26 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ControlerAdvices {
 
-    @ExceptionHandler(NotFoundException.class)
-    private ResponseEntity<ExceptionDto> handelNotFoundException(NotFoundException notFoundException) {
-        // System.out.println("Not found Exception Happend");
-
-        return new ResponseEntity(new ExceptionDto(HttpStatus.NOT_FOUND, notFoundException.getMessage()), HttpStatus.NOT_FOUND);
-
-
-    }
-
-
-    @ExceptionHandler(ArrayIndexOutOfBoundsException.class)
-    private ResponseEntity<ExceptionDto> handelArrayIndexOutOfBoundsException(
-            ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException
-    ) {
-        // System.out.println("Not found Exception Happend");
-
-        return new ResponseEntity(new ExceptionDto(HttpStatus.NOT_FOUND, arrayIndexOutOfBoundsException.getMessage()), HttpStatus.NOT_FOUND);
-
-
-    }
+//    @ExceptionHandler(NotFoundException.class)
+//    private ResponseEntity<ExceptionDto> handelNotFoundException(NotFoundException notFoundException) {
+//        // System.out.println("Not found Exception Happend");
+//
+//        return new ResponseEntity(new ExceptionDto(HttpStatus.NOT_FOUND, notFoundException.getMessage()), HttpStatus.NOT_FOUND);
+//
+//
+//    }
+//
+//
+//    @ExceptionHandler(ArrayIndexOutOfBoundsException.class)
+//    private ResponseEntity<ExceptionDto> handelArrayIndexOutOfBoundsException(
+//            ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException
+//    ) {
+//        // System.out.println("Not found Exception Happend");
+//
+//        return new ResponseEntity(new ExceptionDto(HttpStatus.NOT_FOUND, arrayIndexOutOfBoundsException.getMessage()), HttpStatus.NOT_FOUND);
+//
+//
+//    }
 
 
 //    @ExceptionHandler(Exception.class)

@@ -1,16 +1,15 @@
 package dev.amit.ProductService.services;
 
-import dev.amit.ProductService.thardPartyclients.ProductService.FakeStore.FakeStoreProductDtos;
 import dev.amit.ProductService.dtos.GenericProductDto;
 import dev.amit.ProductService.exceptions.NotFoundException;
+import dev.amit.ProductService.thardPartyclients.ProductService.FakeStore.FakeStoreProductDtos;
 import dev.amit.ProductService.thardPartyclients.ProductService.FakeStore.FakeStoreProductServiceClient;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Primary
+
 @Service("fakestoreproductservice")
 public class FakeStoreProductService implements ProductService {
 
@@ -53,6 +52,8 @@ public class FakeStoreProductService implements ProductService {
 
     private GenericProductDto ConvertFakeStoreProductIntoGenricProduct(FakeStoreProductDtos fakeStoreProductDtos) {
 
+
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
         GenericProductDto product = new GenericProductDto();
         product.setId(fakeStoreProductDtos.getId());
         product.setImage(fakeStoreProductDtos.getImage());
@@ -61,7 +62,7 @@ public class FakeStoreProductService implements ProductService {
         product.setPrice(fakeStoreProductDtos.getPrice());
         product.setCategory(fakeStoreProductDtos.getCategory());
 
-
+        System.out.println("*I****************************" + product.getPrice());
         return product;
 
     }
@@ -134,6 +135,8 @@ public class FakeStoreProductService implements ProductService {
 //
 //        }
 //        return answer;
+
+
         List<GenericProductDto> genericProductDtos=new ArrayList<>();
         for(FakeStoreProductDtos fakeStoreProductDtos : fakeStoreProductServiceClient.getAllProducts()){
             genericProductDtos.add(ConvertFakeStoreProductIntoGenricProduct(fakeStoreProductDtos));
@@ -202,6 +205,7 @@ public class FakeStoreProductService implements ProductService {
 //
 //
 //        return ConvertFakeStoreProductIntoGenricProduct(fakeStoreProductDtos);
+
 
         return ConvertFakeStoreProductIntoGenricProduct( fakeStoreProductServiceClient.deleteProduct(id));
 
@@ -355,7 +359,8 @@ public class FakeStoreProductService implements ProductService {
 
        // return ConvertFakeStoreProductIntoGenricProduct(fakeStoreProductDtos);
 
-
+        System.out.println("I am in fakestoreProductServices*******************************###############___________" + id);
+        System.out.println();
 
    return ConvertFakeStoreProductIntoGenricProduct( fakeStoreProductServiceClient.getProductById(id));
     }
