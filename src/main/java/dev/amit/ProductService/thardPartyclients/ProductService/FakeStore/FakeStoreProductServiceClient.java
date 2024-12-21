@@ -46,12 +46,12 @@ public class FakeStoreProductServiceClient {
 
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-    private RestTemplateBuilder restTemplateBuilder;
+    private final RestTemplateBuilder restTemplateBuilder;
   //  private String getProductRequstUrl = "https://fakestoreapi.com/products/{id}";
   //  private String ProductResquestBaseUrl = "https://fakestoreapi.com/products";
     //   private String getAllProductUrl = "https://fakestoreapi.com/products";
-    private String deleteAllProductUrl = "https://fakestoreapi.com/products/{id}";
-    private String updateProductByIdUrl = "https://fakestoreapi.com/products/{id}";
+  private final String deleteAllProductUrl = "https://fakestoreapi.com/products/{id}";
+    private final String updateProductByIdUrl = "https://fakestoreapi.com/products/{id}";
 
 
     @Value("${fakestore.api.url}")
@@ -61,8 +61,8 @@ public class FakeStoreProductServiceClient {
     private String fakeStoreProductApi;
 
 
-    private String getProductRequstUrl;
-    private String ProductResquestBaseUrl;
+    private final String getProductRequstUrl;
+    private final String ProductResquestBaseUrl;
 
 
     public FakeStoreProductServiceClient(RestTemplateBuilder restTemplateBuilder, @Value("${fakestore.api.url}") String fakestoreApiUrl,

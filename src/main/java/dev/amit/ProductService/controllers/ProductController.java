@@ -6,7 +6,6 @@ import dev.amit.ProductService.exceptions.NotFoundException;
 import dev.amit.ProductService.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +38,7 @@ public class ProductController {
 //    @Autowired
 //    @Qualifier("fakestoreproductservice")
 //    // agar @Autowired nhi lagayenge to bhi chale ga spring automatically put kar deta hai  in latest version of SpringBoot
-    private ProductService productService;
+    private final ProductService productService;
 
 
     // Constructer Method DI(Best Approcah more redable code)

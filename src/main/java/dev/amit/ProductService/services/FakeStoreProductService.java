@@ -26,7 +26,7 @@ public class FakeStoreProductService implements ProductService {
 //    private String updateProductByIdUrl = "https://fakestoreapi.com/products/{id}";
 
     // @Autowired.    es ka use nhi hai ab new SpringBoot version me
-    private FakeStoreProductServiceClient fakeStoreProductServiceClient;
+    private final FakeStoreProductServiceClient fakeStoreProductServiceClient;
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
