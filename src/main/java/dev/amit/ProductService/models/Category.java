@@ -1,15 +1,17 @@
 package dev.amit.ProductService.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Builder
-@Getter
-@Setter
+
 @Entity
 
 public class Category extends  BaseModel {
@@ -17,8 +19,34 @@ public class Category extends  BaseModel {
     private String name;
 
 
-    @OneToMany(mappedBy = "category")
-    private List<Product> product;
+    @OneToMany( mappedBy = "category")
+    private List<Product> product = new ArrayList<>();
+
+    public Category(String name, List<Product> product) {
+        this.name = name;
+        this.product = product;
+    }
+
+
+    public Category() {
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(List<Product> product) {
+        this.product = product;
+    }
 
     // this is the same relation being maped by the other(product) class
 
