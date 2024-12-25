@@ -1,17 +1,14 @@
 package dev.amit.ProductService.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity(name = "orders")
 
 public class Order extends BaseModel {
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(                                        // maping table is also colled Join table
             name = "product_Orders",
             joinColumns = @JoinColumn(name = "order_id"),
@@ -26,6 +23,7 @@ public class Order extends BaseModel {
     public void setProduct(List<Product> product) {
         this.product = product;
     }
+
 
 
 

@@ -1,11 +1,7 @@
 package dev.amit.ProductService.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
+import jakarta.persistence.*;
+import lombok.Data;
 
 
 @Entity
@@ -20,15 +16,25 @@ public class Product extends  BaseModel{
     private String title;
     private String description;
     private String image;
+
+//            TRICKS
     //           P : C
     // => L to R 1 : 1
     // => R to  L m : 1
     // => Ans m : 1
-    @ManyToOne
+
+
+    // when you're trying to save a product if there is a category in it first save a category then save the product, if you not use cascade then you should get error message
+
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "category")
     private Category category;
-    @OneToOne
+
+
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})  // someone trying to save there product do not save
     private Price price;
+
+
     //int n =   option + R
      int n= 739;
 

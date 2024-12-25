@@ -13,6 +13,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.UUID;
+
 @SpringBootApplication
 public class ProductServiceApplication implements CommandLineRunner {
 
@@ -63,18 +65,21 @@ public class ProductServiceApplication implements CommandLineRunner {
 //		}
 		Category category =new Category();
 		category.setName("Apple devices");
-		Category saveCatogary=	categoryRepository.save(category);
+		// Category saveCatogary=	categoryRepository.save(category);
 
-	Price price = new Price();
-	Price savedPrice = priceRepository.save(price);
+	Price price = new Price("Rupee", 10);
+	//Price savedPrice = priceRepository.save(price);
 
 		Product product = new Product();
-		product.setPrice(savedPrice);
+		product.setPrice(price);
 		product.setTitle("Iphone 16 Pro");
+
+	//	productRepository.deleteById(UUID.fromString(""));
+
 
 		product.setDescription("best product ever");
 
-		product.setCategory(saveCatogary);
+		product.setCategory(category);
 
 		productRepository.save(product);
 

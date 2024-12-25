@@ -1,9 +1,9 @@
 package dev.amit.ProductService.models;
 
 import jakarta.persistence.Entity;
-import lombok.Getter;
 
 @Entity
+
 public class Price extends  BaseModel{
     String currency;
     double price;
