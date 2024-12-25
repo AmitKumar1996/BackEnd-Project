@@ -4,15 +4,14 @@ import dev.amit.ProductService.inheritanceDemo.joinedTable.MentorRepository;
 import dev.amit.ProductService.inheritanceDemo.joinedTable.UserRepository;
 import dev.amit.ProductService.models.Category;
 import dev.amit.ProductService.models.CategoryRepository;
+import dev.amit.ProductService.models.Price;
 import dev.amit.ProductService.models.Product;
-import dev.amit.ProductService.repository.CatogryRepository;
+import dev.amit.ProductService.repository.PriceRepository;
 import dev.amit.ProductService.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.UUID;
 
 @SpringBootApplication
 public class ProductServiceApplication implements CommandLineRunner {
@@ -23,18 +22,21 @@ public class ProductServiceApplication implements CommandLineRunner {
 	private final UserRepository userRepository;
 	private final ProductRepository productRepository;
 	private final CategoryRepository categoryRepository;
+	private  final PriceRepository priceRepository;
 
 	public ProductServiceApplication(
-			@Qualifier("jt_mr") MentorRepository mentorRepository,
-			@Qualifier("jt_ur") UserRepository userRepository,
-			ProductRepository productRepository,
-			CategoryRepository categoryRepository) {
+            @Qualifier("jt_mr") MentorRepository mentorRepository,
+            @Qualifier("jt_ur") UserRepository userRepository,
+            ProductRepository productRepository,
+            CategoryRepository categoryRepository,
+             PriceRepository priceRepository) {
 		this.mentorRepository = mentorRepository;
 		this.userRepository = userRepository;
 
 		this.productRepository = productRepository;
 		this.categoryRepository = categoryRepository;
-	}
+        this.priceRepository = priceRepository;
+    }
 	public static void main(String[] args) {
 		SpringApplication.run(ProductServiceApplication.class, args);
 		System.out.println("* Jay Shri Ram *");
@@ -63,8 +65,11 @@ public class ProductServiceApplication implements CommandLineRunner {
 		category.setName("Apple devices");
 		Category saveCatogary=	categoryRepository.save(category);
 
+	Price price = new Price();
+	Price savedPrice = priceRepository.save(price);
+
 		Product product = new Product();
-		product.setPrice(1200);
+		product.setPrice(savedPrice);
 		product.setTitle("Iphone 16 Pro");
 
 		product.setDescription("best product ever");
@@ -94,6 +99,9 @@ public class ProductServiceApplication implements CommandLineRunner {
 //			}
 //
 //		}
+
+
+
 
 
 	}

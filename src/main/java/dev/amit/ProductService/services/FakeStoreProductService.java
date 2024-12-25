@@ -324,6 +324,7 @@ public class FakeStoreProductService implements ProductService {
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     @Override
     public GenericProductDto getProductById(Long id) throws NotFoundException {
+
 //
 //        RestTemplate restTemplate = restTemplateBuilder.build();
 //        ResponseEntity<FakeStoreProductDtos> response =
@@ -359,7 +360,7 @@ public class FakeStoreProductService implements ProductService {
 
        // return ConvertFakeStoreProductIntoGenricProduct(fakeStoreProductDtos);
 
-        System.out.println("I am in fakestoreProductServices*******************************###############___________" + id);
+        System.out.println("I am in fakestoreProductServices***********************************************************###############___________" + id);
         System.out.println();
 
    return ConvertFakeStoreProductIntoGenricProduct( fakeStoreProductServiceClient.getProductById(id));
