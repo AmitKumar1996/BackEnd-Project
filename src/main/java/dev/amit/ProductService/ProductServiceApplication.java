@@ -144,13 +144,16 @@ public class ProductServiceApplication implements CommandLineRunner {
 		//Product byTitleEquals = productRepository.findByTitleEquals("Iphone 16 Pro");
 		System.out.println("------------*********************************************--------------------------------------------");
 		//System.out.println(byTitleEquals);
-
+/*
 		List<Product> byTitleEquals = (List<Product>) productRepository.findByTitleEquals("Iphone 16 Pro");
 		if (!byTitleEquals.isEmpty()) {
 			byTitleEquals.forEach(System.out::println);
 		} else {
 			System.out.println("No products found with the given title.");
 		}
+
+ */
+
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		List<Product> list = productRepository.findByTitleEqualsAndPrice_Price("Iphone 16 Pro", 739.0);
@@ -160,5 +163,20 @@ public class ProductServiceApplication implements CommandLineRunner {
 		List<Product> rupee1 = productRepository.findAllByPriceCurrency("Rupee");
 		System.out.println("------------**************++++++++++++++##################################++++++++++++++++++*******************************--------------------------------------------");
 		System.out.println(rupee1);
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		long rupee2 = productRepository.countAllByPrice_Currency("Rupee");
+		System.out.println(rupee2);
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		List<Product> rupee3 = productRepository.findDistinctByPriceCurrency("Rupee");
+		System.out.println(rupee3);
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		System.out.println("########################################################################");
+		List<Product> bytTitle= productRepository.findBytTitle("Iphone 16 Pro");
+		System.out.println(bytTitle);
+
+
 	}
+
 }
