@@ -13,7 +13,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.UUID;
+import java.util.List;
 
 @SpringBootApplication
 public class ProductServiceApplication implements CommandLineRunner {
@@ -47,6 +47,7 @@ public class ProductServiceApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
+
 //		Mentor mentor = new Mentor();
 //
 //		mentor.setEmail("ami@gmail.com");
@@ -63,6 +64,8 @@ public class ProductServiceApplication implements CommandLineRunner {
 //		for (User user1 : users) {
 //			System.out.println(user1);
 //		}
+
+
 		Category category =new Category();
 		category.setName("Apple devices");
 		// Category saveCatogary=	categoryRepository.save(category);
@@ -74,7 +77,8 @@ public class ProductServiceApplication implements CommandLineRunner {
 		product.setPrice(price);
 		product.setTitle("Iphone 16 Pro");
 
-	//	productRepository.deleteById(UUID.fromString(""));
+
+		//	productRepository.deleteById(UUID.fromString(""));
 
 
 		product.setDescription("best product ever");
@@ -83,8 +87,17 @@ public class ProductServiceApplication implements CommandLineRunner {
 
 		productRepository.save(product);
 
+
 //	Category category1=	categoryRepository.findById(UUID.fromString("\u0001c�\u000F\u0017�I\\�DF-�\u000FjC")).get();  // this string is encrepted that's why creating problem
-//
+
+
+		// List<Product> products= productRepository.findByAllByprice_currancy("Rupee");
+
+
+
+
+
+
 //		System.out.println("category name is : "+category1.getName());
 //		System.out.println("printing all product in the category");
 //
@@ -109,5 +122,43 @@ public class ProductServiceApplication implements CommandLineRunner {
 
 
 
+		//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//	                                               	JPA Query
+//
+//		Product product1= productRepository.findAllById('f5e0706b-cf66-45f4-80e0-78a6d8b0492b');
+//		System.out.println("My Product"+product1);
+
+
+		List<Product> bestProductEver = productRepository.findByTitleAndDescription("Iphone 16 Pro", "best product ever");
+		System.out.println(bestProductEver);
+
+		List<Product> all = productRepository.findAll();
+		System.out.println(all.size());
+		System.out.println(all);
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		List<Product> rupee = productRepository.findByPrice_Currency("Rupee");
+		System.out.println("--------------------------------------------------------");
+		System.out.println(rupee);
+		//-------------------------------------------------	---------------------------------------------------------------------------------------------------------------------------------------
+		//Product byTitleEquals = productRepository.findByTitleEquals("Iphone 16 Pro");
+		System.out.println("------------*********************************************--------------------------------------------");
+		//System.out.println(byTitleEquals);
+
+		List<Product> byTitleEquals = (List<Product>) productRepository.findByTitleEquals("Iphone 16 Pro");
+		if (!byTitleEquals.isEmpty()) {
+			byTitleEquals.forEach(System.out::println);
+		} else {
+			System.out.println("No products found with the given title.");
+		}
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		List<Product> list = productRepository.findByTitleEqualsAndPrice_Price("Iphone 16 Pro", 739.0);
+		System.out.println("------------*********************************************--------------------------------------------");
+		System.out.println(list);
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		List<Product> rupee1 = productRepository.findAllByPriceCurrency("Rupee");
+		System.out.println("------------**************++++++++++++++##################################++++++++++++++++++*******************************--------------------------------------------");
+		System.out.println(rupee1);
 	}
 }
