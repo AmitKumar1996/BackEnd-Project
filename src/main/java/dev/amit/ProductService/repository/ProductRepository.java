@@ -31,7 +31,11 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
 
     List<Product> findDistinctByPriceCurrency(String currency);
 
-//---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------Native MySQL Query-------------------------------------------------------------------------------------------------------------
+
+
 
     @Query(value = "select * from product join product_orders on product.id = product_orders.product_id where title = :amit ", nativeQuery = true)
     List<Product> findBytTitle(String amit);
