@@ -37,7 +37,17 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
 
 
 
-    @Query(value = "select * from product join product_orders on product.id = product_orders.product_id where title = :amit ", nativeQuery = true)
+    @Query(value = CustomQuries.FIND_ALL_PRODUCTS_BY_TITLE, nativeQuery = true)
     List<Product> findBytTitle(String amit);
+
+
+
+// ---------------------------------------------------------Hibernate Query Language----------------------------------------------------------------
+    // when function is complex thenyou shoulduse the HiberNet query    language
+/*
+    @Query("select Product From Product  where Product.price.currency = :currency and Product.title = :amit")
+    List<Product> hiberNetQueryLanguage(String amit, String currency);
+
+ */
 
 }

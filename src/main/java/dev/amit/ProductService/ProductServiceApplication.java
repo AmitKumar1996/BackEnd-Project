@@ -16,15 +16,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.List;
 
 @SpringBootApplication
-public class ProductServiceApplication implements CommandLineRunner {
+public class ProductServiceApplication {  //implements CommandLineRunner {
 
-
+/*
 	private final MentorRepository mentorRepository;
 
 	private final UserRepository userRepository;
 	private final ProductRepository productRepository;
 	private final CategoryRepository categoryRepository;
 	private  final PriceRepository priceRepository;
+
 
 	public ProductServiceApplication(
             @Qualifier("jt_mr") MentorRepository mentorRepository,
@@ -39,11 +40,13 @@ public class ProductServiceApplication implements CommandLineRunner {
 		this.categoryRepository = categoryRepository;
         this.priceRepository = priceRepository;
     }
+    */
+
 	public static void main(String[] args) {
 		SpringApplication.run(ProductServiceApplication.class, args);
 		System.out.println("* Jay Shri Ram *");
 	}
-
+/*
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -144,15 +147,15 @@ public class ProductServiceApplication implements CommandLineRunner {
 		//Product byTitleEquals = productRepository.findByTitleEquals("Iphone 16 Pro");
 		System.out.println("------------*********************************************--------------------------------------------");
 		//System.out.println(byTitleEquals);
-/*
-		List<Product> byTitleEquals = (List<Product>) productRepository.findByTitleEquals("Iphone 16 Pro");
-		if (!byTitleEquals.isEmpty()) {
-			byTitleEquals.forEach(System.out::println);
-		} else {
-			System.out.println("No products found with the given title.");
-		}
 
- */
+//		List<Product> byTitleEquals = (List<Product>) productRepository.findByTitleEquals("Iphone 16 Pro");
+//		if (!byTitleEquals.isEmpty()) {
+//			byTitleEquals.forEach(System.out::println);
+//		} else {
+//			System.out.println("No products found with the given title.");
+//		}
+
+
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -173,10 +176,18 @@ public class ProductServiceApplication implements CommandLineRunner {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		System.out.println("########################################################################");
+
 		List<Product> bytTitle= productRepository.findBytTitle("Iphone 16 Pro");
 		System.out.println(bytTitle);
 
+//--------------------------------------------------------------------------------------------------------------------------------
+
+		List<Product> products123 = productRepository.hiberNetQueryLanguage(String "Iphone 16 Pro", String "Rupee");
+		System.out.println(products123);
+
+
 
 	}
+	*/
 
 }

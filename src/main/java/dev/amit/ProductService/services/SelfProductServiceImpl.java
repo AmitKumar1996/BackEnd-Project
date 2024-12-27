@@ -1,12 +1,20 @@
 package dev.amit.ProductService.services;
 
 import dev.amit.ProductService.dtos.GenericProductDto;
+import dev.amit.ProductService.repository.ProductRepository;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Primary
 @Service("selfproduceserviceimpl")
 public class SelfProductServiceImpl  implements  ProductService{
+
+    private ProductRepository productRepository;
+
+    public SelfProductServiceImpl(ProductRepository productRepository){
+        this.productRepository=productRepository;
+    }
 
     @Override
     public GenericProductDto createProduct(GenericProductDto product) {
