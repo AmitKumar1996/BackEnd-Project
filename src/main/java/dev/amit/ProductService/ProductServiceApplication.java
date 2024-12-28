@@ -13,12 +13,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.sql.SQLOutput;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @SpringBootApplication
-public class ProductServiceApplication {  //implements CommandLineRunner {
+public class ProductServiceApplication implements CommandLineRunner {
 
-/*
+
 	private final MentorRepository mentorRepository;
 
 	private final UserRepository userRepository;
@@ -40,13 +43,13 @@ public class ProductServiceApplication {  //implements CommandLineRunner {
 		this.categoryRepository = categoryRepository;
         this.priceRepository = priceRepository;
     }
-    */
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProductServiceApplication.class, args);
 		System.out.println("* Jay Shri Ram *");
 	}
-/*
+
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -170,9 +173,11 @@ public class ProductServiceApplication {  //implements CommandLineRunner {
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		long rupee2 = productRepository.countAllByPrice_Currency("Rupee");
 		System.out.println(rupee2);
+
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		List<Product> rupee3 = productRepository.findDistinctByPriceCurrency("Rupee");
 		System.out.println(rupee3);
+
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		System.out.println("########################################################################");
@@ -182,12 +187,15 @@ public class ProductServiceApplication {  //implements CommandLineRunner {
 
 //--------------------------------------------------------------------------------------------------------------------------------
 
-		List<Product> products123 = productRepository.hiberNetQueryLanguage(String "Iphone 16 Pro", String "Rupee");
-		System.out.println(products123);
+//		List<Product> products123 = productRepository.hiberNetQueryLanguage(String "Iphone 16 Pro", String "Rupee");
+//		System.out.println(products123);
 
-
-
+		System.out.println("Fetching category 1cb4196e-ea1f-4b7a-a908-0c58dc9f10fd");
+		Thread.sleep(1000);
+  Optional<Category> category1Optional= categoryRepository.findById(UUID.fromString("1cb4196e-ea1f-4b7a-a908-0c58dc9f10fd"));
+   Category category1 = category1Optional.get();
+		//System.out.println(category1);
 	}
-	*/
+
 
 }
