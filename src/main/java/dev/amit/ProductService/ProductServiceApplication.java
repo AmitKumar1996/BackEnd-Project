@@ -189,12 +189,14 @@ public class ProductServiceApplication implements CommandLineRunner {
 
 //		List<Product> products123 = productRepository.hiberNetQueryLanguage(String "Iphone 16 Pro", String "Rupee");
 //		System.out.println(products123);
+//--------------------------------------------------------------------------------------------------------------------------------
 
 		System.out.println("Fetching category 1cb4196e-ea1f-4b7a-a908-0c58dc9f10fd");
 		Thread.sleep(1000);
-  Optional<Category> category1Optional= categoryRepository.findById(UUID.fromString("1cb4196e-ea1f-4b7a-a908-0c58dc9f10fd"));
+		System.out.println("Fetching category 1cb4196e-ea1f-4b7a-a908-0c58dc9f10fd");
+  Optional<Category> category1Optional= categoryRepository.findById(UUID.fromString("1416f710-310f-4ed2-9522-c446c1f39b20"));
    Category category1 = category1Optional.get();
-		//System.out.println(category1);
+		System.out.println("id : "+category1);
 	}
 
 
