@@ -2,8 +2,10 @@ package dev.amit.ProductService.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.Builder;
+import org.hibernate.annotations.Fetch;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ public class Category extends  BaseModel {
     private String name;
 
 
-    @OneToMany( mappedBy = "category")
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<Product> product = new ArrayList<>();
 
     public Category(String name, List<Product> product) {

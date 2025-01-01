@@ -8,15 +8,13 @@ import dev.amit.ProductService.models.Price;
 import dev.amit.ProductService.models.Product;
 import dev.amit.ProductService.repository.PriceRepository;
 import dev.amit.ProductService.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.sql.SQLOutput;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @SpringBootApplication
 public class ProductServiceApplication implements CommandLineRunner {
@@ -50,6 +48,7 @@ public class ProductServiceApplication implements CommandLineRunner {
 		System.out.println("* Jay Shri Ram *");
 	}
 
+	@Transactional
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -71,16 +70,18 @@ public class ProductServiceApplication implements CommandLineRunner {
 //			System.out.println(user1);
 //		}
 
+//
+
 
 		Category category =new Category();
 		category.setName("Apple devices");
-		// Category saveCatogary=	categoryRepository.save(category);
+		 Category saveCatogary=	categoryRepository.save(category);
 
 	Price price = new Price("Rupee", 10);
-	//Price savedPrice = priceRepository.save(price);
+		Price savedPriceDb = priceRepository.save(price);
 
 		Product product = new Product();
-		product.setPrice(price);
+
 		product.setTitle("Iphone 16 Pro");
 
 
@@ -89,9 +90,94 @@ public class ProductServiceApplication implements CommandLineRunner {
 
 		product.setDescription("best product ever");
 
-		product.setCategory(category);
+		product.setCategory(saveCatogary);
+		product.setPrice(savedPriceDb);
 
 		productRepository.save(product);
+
+
+
+//		// Save Category
+//		Category category = new Category();
+//		category.setName("Apple devices");
+//		Category savedCategory = categoryRepository.save(category);
+//	//	LOGGER.info("Saved Category: {}", savedCategory);
+//
+//		// Save Price
+//		Price price = new Price("Rupee", 10);
+//		Price savedPrice = priceRepository.save(price);
+//	//	LOGGER.info("Saved Price: {}", savedPrice);
+//
+//		// Save Product
+//		Product product = new Product();
+//		product.setTitle("iPhone 16 Pro");
+//		product.setDescription("Best product ever");
+//		product.setCategory(savedCategory);
+//		product.setPrice(savedPrice);
+//		Product savedProduct = productRepository.save(product);
+//	//	LOGGER.info("Saved Product: {}", savedProduct);
+
+
+
+
+/*
+		// Create and save the Category
+		Category category = new Category();
+		category.setName("Apple devices");
+		Category savedCategory = categoryRepository.save(category); // Save the Category to make it a managed entity
+
+// Create and save the Price
+		Price price = new Price("Rupee", 10);
+		Price savedPrice = priceRepository.save(price); // Save the Price to make it a managed entity
+
+// Create the Product and associate saved Category and Price
+		Product product = new Product();
+		product.setTitle("iPhone 16 Pro");
+		product.setDescription("Best product ever");
+
+// Associate the managed entities
+		product.setCategory(savedCategory); // Use the saved Category instance
+		product.setPrice(savedPrice);       // Use the saved Price instance
+
+// Save the Product
+		Product savedProduct = productRepository.save(product); // Save the Product
+
+// Log or verify the result (optional)
+		System.out.println("Product saved successfully: " + savedProduct);
+
+*/
+
+
+
+
+
+//// Save the Category and retain the saved reference
+//		Category category = new Category();
+//		category.setName("Apple devices");
+//		Category savedCategory = categoryRepository.save(category);
+//
+//// Save the Price and retain the saved reference
+//		Price price = new Price("Rupee", 10);
+//		Price savedPrice = priceRepository.save(price);
+//
+//// Create the Product and associate the saved Category and Price
+//		Product product = new Product();
+//		product.setTitle("iPhone 16 Pro");
+//		product.setDescription("Best product ever");
+//		product.setCategory(savedCategory); // Use the saved Category instance
+//		product.setPrice(savedPrice);       // Use the saved Price instance
+//
+//// Save the Product
+//		productRepository.save(product);
+
+
+
+
+
+
+
+
+
 
 
 //	Category category1=	categoryRepository.findById(UUID.fromString("\u0001c�\u000F\u0017�I\\�DF-�\u000FjC")).get();  // this string is encrepted that's why creating problem
@@ -144,11 +230,11 @@ public class ProductServiceApplication implements CommandLineRunner {
 		System.out.println(all);
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		List<Product> rupee = productRepository.findByPrice_Currency("Rupee");
-		System.out.println("--------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------------------------------");
 		System.out.println(rupee);
 		//-------------------------------------------------	---------------------------------------------------------------------------------------------------------------------------------------
 		//Product byTitleEquals = productRepository.findByTitleEquals("Iphone 16 Pro");
-		System.out.println("------------*********************************************--------------------------------------------");
+		System.out.println("------------*********************************************-------------------------------------------------------------------");
 		//System.out.println(byTitleEquals);
 
 //		List<Product> byTitleEquals = (List<Product>) productRepository.findByTitleEquals("Iphone 16 Pro");
@@ -163,11 +249,11 @@ public class ProductServiceApplication implements CommandLineRunner {
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		List<Product> list = productRepository.findByTitleEqualsAndPrice_Price("Iphone 16 Pro", 739.0);
-		System.out.println("------------*********************************************--------------------------------------------");
+		System.out.println("------------*********************************************-------------------------------------------------------------");
 		System.out.println(list);
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		List<Product> rupee1 = productRepository.findAllByPriceCurrency("Rupee");
-		System.out.println("------------**************++++++++++++++##################################++++++++++++++++++*******************************--------------------------------------------");
+		System.out.println("--------------------------------**************++++++++++++++##################################++++++++++++++++++*******************************--------------------------------------------");
 		System.out.println(rupee1);
 
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -180,7 +266,7 @@ public class ProductServiceApplication implements CommandLineRunner {
 
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		System.out.println("########################################################################");
+		System.out.println("------------------------------------########################################################################---------------------------------------------");
 
 		List<Product> bytTitle= productRepository.findBytTitle("Iphone 16 Pro");
 		System.out.println(bytTitle);
@@ -190,14 +276,97 @@ public class ProductServiceApplication implements CommandLineRunner {
 //		List<Product> products123 = productRepository.hiberNetQueryLanguage(String "Iphone 16 Pro", String "Rupee");
 //		System.out.println(products123);
 //--------------------------------------------------------------------------------------------------------------------------------
+//		System.out.println("Fetching category 1cb4196e-ea1f-4b7a-a908-0c58dc9f10fd");
+//		Thread.sleep(1000);
+//		System.out.println("Fetching category 1cb4196e-ea1f-4b7a-a908-0c58dc9f10fd");
+//		Category category1 = categoryRepository.findById(UUID.fromString("04eebe4d-686a-418a-adfa-0aece669c39c")).get();
+//		//Category category1 = category1Optional.get();
+//		//System.out.println("id : " + category1);
+//
+//		System.out.println("Fatching product");
+//		Thread.sleep(1000);
+//		List<Product> product1 = category1.getProduct();
 
-		System.out.println("Fetching category 1cb4196e-ea1f-4b7a-a908-0c58dc9f10fd");
-		Thread.sleep(1000);
-		System.out.println("Fetching category 1cb4196e-ea1f-4b7a-a908-0c58dc9f10fd");
-  Optional<Category> category1Optional= categoryRepository.findById(UUID.fromString("1416f710-310f-4ed2-9522-c446c1f39b20"));
-   Category category1 = category1Optional.get();
-		System.out.println("id : "+category1);
 	}
 
 
 }
+
+/*
+package dev.amit.ProductService;
+
+import dev.amit.ProductService.models.Category;
+import dev.amit.ProductService.models.CategoryRepository;
+import dev.amit.ProductService.models.Price;
+import dev.amit.ProductService.models.Product;
+import dev.amit.ProductService.repository.PriceRepository;
+import dev.amit.ProductService.repository.ProductRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@SpringBootApplication
+public class ProductServiceApplication implements CommandLineRunner {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceApplication.class);
+
+	private final ProductRepository productRepository;
+	private final CategoryRepository categoryRepository;
+	private final PriceRepository priceRepository;
+
+	public ProductServiceApplication(
+			ProductRepository productRepository,
+			CategoryRepository categoryRepository,
+			PriceRepository priceRepository) {
+		this.productRepository = productRepository;
+		this.categoryRepository = categoryRepository;
+		this.priceRepository = priceRepository;
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(ProductServiceApplication.class, args);
+		LOGGER.info("* Jay Shri Ram *");
+	}
+
+	@Override
+	@Transactional
+	public void run(String... args) {
+		try {
+			// Save Category
+			Category category = new Category();
+			category.setName("Apple devices");
+			Category savedCategory = categoryRepository.save(category);
+			LOGGER.info("Saved Category: {}", savedCategory);
+
+			// Save Price
+			Price price = new Price("Rupee", 10);
+			Price savedPrice = priceRepository.save(price);
+			LOGGER.info("Saved Price: {}", savedPrice);
+
+			// Save Product
+			Product product = new Product();
+			product.setTitle("iPhone 16 Pro");
+			product.setDescription("Best product ever");
+			product.setCategory(savedCategory);
+			product.setPrice(savedPrice);
+			Product savedProduct = productRepository.save(product);
+			LOGGER.info("Saved Product: {}", savedProduct);
+
+			// Fetch and log products
+			List<Product> products = productRepository.findByTitleAndDescription("iPhone 16 Pro", "Best product ever");
+			LOGGER.info("Products with title and description: {}", products);
+
+			List<Product> rupeeProducts = productRepository.findByPrice_Currency("Rupee");
+			LOGGER.info("Products with price currency 'Rupee': {}", rupeeProducts);
+
+		} catch (Exception e) {
+			LOGGER.error("Error occurred during application execution", e);
+		}
+	}
+}
+*/

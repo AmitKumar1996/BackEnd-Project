@@ -26,17 +26,31 @@ public class Product extends  BaseModel{
 
     // when you're trying to save a product if there is a category in it first save a category then save the product, if you not use cascade then you should get error message
 
+
+
+
+
     @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "category")
     private Category category;
 
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})  // someone trying to save there product do not save
+  @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    // someone trying to save there product do not save
     private Price price;
 
 
     //int n =   option + R
      int n= 739;
+
+//    public Price getPrice() {
+//        return price;
+//    }
+
+    public void setPrice(Price price) {
+        this.price = price; // Assign the parameter to the field
+    }
+
 
 
 
@@ -91,8 +105,11 @@ public class Product extends  BaseModel{
     public Price getPrice() {
         return price;
     }
+//    public void setPrice(Price price) {
+//        this.price = price;
+//    }
 
-    public void setPrice(Price price) {
+    public void setPrice() {
         this.price = price;
     }
 
