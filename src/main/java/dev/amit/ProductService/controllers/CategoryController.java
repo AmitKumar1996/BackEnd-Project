@@ -41,5 +41,9 @@ public class CategoryController {
         return productDtos;
 
     }
+    @GetMapping("/title/{uuid}")
+    public List<String> getProductTitle(@PathVariable("uuid") String uuid){
+        return  categoryService.getProductTitle(uuid);
+    }
 
 }

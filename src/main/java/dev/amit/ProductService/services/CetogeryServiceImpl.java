@@ -5,6 +5,8 @@ import dev.amit.ProductService.models.CategoryRepository;
 import dev.amit.ProductService.models.Product;
 import org.springframework.stereotype.Service;
 
+import javax.print.DocFlavor;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -33,4 +35,20 @@ public class CetogeryServiceImpl implements CategoryService {
        List<Product> products = category.getProduct();
         return category;
     }
+
+    public List<String> getProductTitle(String uuid) {
+
+        Optional<Category> categoryOptional = categoryRepository.findById(UUID.fromString(uuid));
+        if (categoryOptional.isEmpty()) {
+            return null;
+        }
+        Category category = categoryOptional.get();
+        List<String> title = new ArrayList<>();
+
+        category.getProduct().forEach(
+                product -> title.add(product.getTitle()));
+
+        return title;
+    }
+
 }
