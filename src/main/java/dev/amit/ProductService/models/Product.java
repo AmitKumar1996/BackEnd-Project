@@ -41,7 +41,7 @@ public class Product extends  BaseModel{
 
 
     //int n =   option + R
-     int n= 739;
+    // int n= 739;
 
 //    public Price getPrice() {
 //        return price;

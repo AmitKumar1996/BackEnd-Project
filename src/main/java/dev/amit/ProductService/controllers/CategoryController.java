@@ -16,10 +16,10 @@ import java.util.List;
 public class CategoryController {
 
     private CategoryService categoryService;
-//
-//    public CategoryController(CategoryService categoryService) {
-//        this.categoryService = categoryService;
-//    }
+
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     @GetMapping("/{uuid}")
     public List<ProductDto> getCategory(@PathVariable("uuid") String uuid) {
