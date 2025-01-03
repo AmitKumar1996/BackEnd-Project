@@ -3,6 +3,7 @@ package dev.amit.ProductService.services;
 import dev.amit.ProductService.models.Category;
 import dev.amit.ProductService.models.Product;
 import dev.amit.ProductService.repository.CategoryRepository;
+import dev.amit.ProductService.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 
@@ -18,10 +19,13 @@ import java.util.UUID;
 public class CategoryServiceImpl implements CategoryService {
 
     private CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository,
+                               ProductRepository productRepository) {
 
         this.categoryRepository = categoryRepository;
+        this.productRepository = productRepository;
     }
 
     @Override
@@ -60,6 +64,11 @@ public class CategoryServiceImpl implements CategoryService {
 
 
         return titles;
+
+//        List<Category> categories = categoryRepository.findAllById(uuids);
+//
+//        List<Product> products = productRepository.
+//        return null ;
     }
 
 

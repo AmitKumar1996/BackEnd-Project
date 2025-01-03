@@ -1,5 +1,6 @@
 package dev.amit.ProductService.repository;
 
+import dev.amit.ProductService.models.Category;
 import dev.amit.ProductService.models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -30,6 +31,8 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
     long countAllByPrice_Currency(String currency);
 
     List<Product> findDistinctByPriceCurrency(String currency);
+
+// List<Product> products= findAllByCategoryIn(List<Category> categories);
 
 
 

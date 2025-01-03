@@ -6,7 +6,9 @@ import jakarta.persistence.Entity;
 
 public class Price extends  BaseModel{
     String currency;
+
     double price;
+
 
     public Price(String currency, double price) {
         this.currency = currency;

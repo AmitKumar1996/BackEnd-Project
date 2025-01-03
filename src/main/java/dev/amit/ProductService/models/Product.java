@@ -2,6 +2,9 @@ package dev.amit.ProductService.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.apache.logging.log4j.util.Lazy;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 
 @Entity
@@ -36,7 +39,10 @@ public class Product extends  BaseModel{
 
 
   @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    // someone trying to save there product do not save
+  @JoinColumn(unique = true)
+
+  // someone trying to save there product do not save
+
     private Price price;
 
 
