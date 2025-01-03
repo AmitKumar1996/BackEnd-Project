@@ -2,8 +2,9 @@ package dev.amit.ProductService.services;
 
 import dev.amit.ProductService.models.Category;
 import dev.amit.ProductService.models.Product;
+import dev.amit.ProductService.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
-import dev.amit.ProductService.models.CategoryRepository;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +12,14 @@ import java.util.Optional;
 import java.util.UUID;
 
 
+
 @Service
 
-public class CetegoryServiceImpl implements CategoryService {
+public class CategoryServiceImpl implements CategoryService {
 
     private CategoryRepository categoryRepository;
 
-    public CetegoryServiceImpl(CategoryRepository categoryRepository) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository) {
 
         this.categoryRepository = categoryRepository;
     }
@@ -35,7 +37,7 @@ public class CetegoryServiceImpl implements CategoryService {
         return category;
     }
 
-    public List<String> getProductTitle( List<String> Categoryuuids) {
+    public List<String> getProductTitles( List<String> Categoryuuids) {
 
         List<UUID> uuids=new ArrayList<>();
 

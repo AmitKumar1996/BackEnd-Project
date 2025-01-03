@@ -6,6 +6,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.Builder;
 import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,11 @@ public class Category extends  BaseModel {
 
 
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    // @Fetch(FetchMode.JOIN) ---> N+1 DB calls
+    // @Fetch(FetchMode.SELECT) --> N+1 DB calls
+    //  @Fetch(FetchMode.SUBSELECT) -->(2 DB call only) fisrt Query will fetch all of the product and second query will fetch all of the products from all of the of the categories
+
     private List<Product> product = new ArrayList<>();
 
     public Category(String name, List<Product> product) {

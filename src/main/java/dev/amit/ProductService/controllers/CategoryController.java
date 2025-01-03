@@ -1,12 +1,10 @@
 package dev.amit.ProductService.controllers;
 
+import dev.amit.ProductService.dtos.GetProductTitlesRequestDto;
 import dev.amit.ProductService.dtos.ProductDto;
 import dev.amit.ProductService.models.Product;
 import dev.amit.ProductService.services.CategoryService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,9 +39,10 @@ public class CategoryController {
         return productDtos;
 
     }
-    @GetMapping("/title/{uuid}")
-    public List<String> getProductTitle(@PathVariable("uuid") String uuid){
-        return  categoryService.getProductTitle(uuid);
+    @GetMapping("/titles")
+    public List<String> getProductTitles(@RequestBody GetProductTitlesRequestDto requestDto){
+        List<String> uuids = requestDto.getUuids();
+        return  categoryService.getProductTitles(uuids);
     }
 
 }

@@ -9,10 +9,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface CategryRepository extends JpaRepository <Category, UUID>{
+public interface CategoryRepository extends JpaRepository <Category, UUID>{
 
 
     // Optional<Category>: The method returns an Optional object wrapping a Category. This is useful for handling cases where the requested entity might not exist in the database.
     Optional<Category> findById(UUID uuid);
+    @Override
     List<Category> findAllById(Iterable<UUID> uuids);
 }

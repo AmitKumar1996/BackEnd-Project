@@ -10,6 +10,7 @@ public interface CategoryService {
      Category getCategory(String uuid);
 
 
-      List<String> getProductTitle(String uuid);
+
+      List<String> getProductTitles( List<String> Categoryuuids);
 
 }
