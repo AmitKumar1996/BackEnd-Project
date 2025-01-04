@@ -155,7 +155,7 @@ public class ProductController {
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
     @PostMapping
     public GenericProductDto createProduct(@RequestBody GenericProductDto product)  throws NotFoundException{
-
+        System.out.println("HI");
         logger.info(product.getTitle());
 
         return productService.createProduct(product);
