@@ -32,7 +32,7 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
 
     List<Product> findDistinctByPriceCurrency(String currency);
 
-// List<Product> products= findAllByCategoryIn(List<Category> categories);
+// List<Product> products= findAllByCategoryIn(List<Category> categories); complite this method form lecture  N + 1 Problem, Fetch Type, Fetch Modes
 
 
 

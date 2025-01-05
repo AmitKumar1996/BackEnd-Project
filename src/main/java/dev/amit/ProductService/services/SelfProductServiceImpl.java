@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-//@Primary
+@Primary
 @Service("selfproduceserviceimpl")
 public class SelfProductServiceImpl  implements  ProductService{
 
@@ -23,6 +23,7 @@ public class SelfProductServiceImpl  implements  ProductService{
 
     @Override
     public GenericProductDto updateProductById(Long id) {
+
         return null;
     }
 

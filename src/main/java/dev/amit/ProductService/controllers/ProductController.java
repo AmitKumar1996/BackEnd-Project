@@ -105,10 +105,20 @@ public class ProductController {
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
     @GetMapping("/{id}")
     public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException {
-       // System.out.println("controller");
-        logger.info("charli in");
+
+        GenericProductDto productDto = productService.getProductById(id);
+
+        if(productDto== null){
+            throw new NotFoundException("Product not found with id: " + id);
+        }
+        else {
+            return productDto;
+        }
+
+
+      //  logger.info("charli in");
        // logger.info(productService.getProductById(id));
-        return productService.getProductById(id);
+
 
     }
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
