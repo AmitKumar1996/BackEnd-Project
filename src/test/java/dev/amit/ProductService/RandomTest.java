@@ -9,10 +9,10 @@ import java.util.Random;
 public class RandomTest {
     @Test
    void testLessThan3(){
-//        Random random= new Random();
-//        int number= random.nextInt();
-//
-//        assert(number < 1000000000);
+        Random random= new Random();
+        int number= random.nextInt();
+
+        assert(number < 10);
 
     }
 }
