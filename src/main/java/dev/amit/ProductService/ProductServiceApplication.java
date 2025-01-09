@@ -1,5 +1,6 @@
 package dev.amit.ProductService;
 
+import dev.amit.ProductService.exceptions.NotFoundException;
 import dev.amit.ProductService.inheritanceDemo.joinedTable.MentorRepository;
 import dev.amit.ProductService.inheritanceDemo.joinedTable.UserRepository;
 import dev.amit.ProductService.models.Category;
