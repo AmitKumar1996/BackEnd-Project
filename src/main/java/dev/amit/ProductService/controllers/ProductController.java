@@ -112,9 +112,14 @@ public class ProductController {
         if(productDto== null){
             throw new NotFoundException("Product not found with id: " + id);
         }
-        else {
+
+    //    GenericProductDto genericProductDto  = new GenericProductDto();
+     //   genericProductDto.setTitle(productDto.getTitle());
+
             return productDto;
-        }
+
+
+
 
 
       //  logger.info("charli in");

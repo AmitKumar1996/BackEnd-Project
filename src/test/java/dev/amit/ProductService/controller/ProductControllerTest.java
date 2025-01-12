@@ -6,15 +6,11 @@ import dev.amit.ProductService.exceptions.NotFoundException;
 import dev.amit.ProductService.services.FakeStoreProductService;
 import dev.amit.ProductService.services.ProductService;
 import dev.amit.ProductService.thardPartyclients.ProductService.FakeStore.FakeStoreProductServiceClient;
-import org.hibernate.mapping.Any;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -58,22 +54,53 @@ public class ProductControllerTest {
 
     }
 
+    @Test
+    @DisplayName("throwExceptionWhenProductDoesnotExist")
+    void throwExceptionWhenProductDoesnotExist() throws NotFoundException {
+        when( productService.getProductById(any(Long.class))
+
+        ).thenReturn((null));
 
 
-//     @Disabled("NOt uses full")
-//    @Test
-//    void shouldReturnTitleAmitWithProductID1() throws NotFoundException {
-//        GenericProductDto genericProductDto = new  GenericProductDto();
-//
-//        genericProductDto.setTitle("Amit");
-//
-//      when(productService.getProductById(1L)).thenReturn(genericProductDto);
-//
-//      GenericProductDto genericProductDto1 = productController.getProductById(1L);
-//
-//      assertEquals("Amit", genericProductDto1.getTitle(), "Title is not matching");
-//
-//    }
+        assertThrows(NotFoundException.class, ()->productController.getProductById(123L));
+    }
+
+
+    @Disabled
+    @Test
+    @DisplayName("returnsProductWhenProductExist")
+    void returnProductWhenProductExist() throws NotFoundException {
+
+        GenericProductDto genericProductDto = new GenericProductDto();
+
+
+
+        when( productService.getProductById(any(Long.class))
+
+        ).thenReturn((genericProductDto));
+
+
+        assertEquals(genericProductDto, productController.getProductById((123L)));
+
+    //    assertThrows(NotFoundException.class, ()->productController.getProductById(123L));
+    }
+
+
+
+   @Disabled("NOt uses full")
+    @Test
+    void shouldReturnTitleAmitWithProductID1() throws NotFoundException {
+        GenericProductDto genericProductDto = new  GenericProductDto();
+
+        genericProductDto.setTitle("Amit");
+
+      when(productService.getProductById(1L)).thenReturn(genericProductDto);
+
+      GenericProductDto genericProductDto1 = productController.getProductById(1L);
+
+      assertEquals("Amit", genericProductDto1.getTitle(), "Title is not matching");
+
+    }
 
 
 
