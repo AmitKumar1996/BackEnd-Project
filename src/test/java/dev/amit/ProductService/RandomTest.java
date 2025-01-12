@@ -12,7 +12,7 @@ public class RandomTest {
 //        Random random= new Random();
 //        int number= random.nextInt();
 //
-//        assert(number < 10);
+//        assert(number < 1000000000);
 
     }
 }

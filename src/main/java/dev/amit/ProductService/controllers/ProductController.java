@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
 public class ProductController {
 
 
-    Logger logger = Logger.getLogger(getClass().getName());
+ //   Logger logger = Logger.getLogger(getClass().getName());
 
 
 
@@ -165,8 +166,8 @@ public class ProductController {
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
     @PostMapping
     public GenericProductDto createProduct(@RequestBody GenericProductDto product)  throws NotFoundException{
-        System.out.println("HI");
-        logger.info(product.getTitle());
+
+       // logger.info(product.getTitle());
 
         return productService.createProduct(product);
 

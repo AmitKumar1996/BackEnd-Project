@@ -23,7 +23,7 @@ public class SelfProductServiceImpl  implements  ProductService{
 
     @Override
     public GenericProductDto updateProductById(Long id) {
-
+        System.out.println("In product Service self product service" + id);
         return null;
     }
 

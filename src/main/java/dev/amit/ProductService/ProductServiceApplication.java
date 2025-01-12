@@ -1,6 +1,5 @@
 package dev.amit.ProductService;
 
-import dev.amit.ProductService.exceptions.NotFoundException;
 import dev.amit.ProductService.inheritanceDemo.joinedTable.MentorRepository;
 import dev.amit.ProductService.inheritanceDemo.joinedTable.UserRepository;
 import dev.amit.ProductService.models.Category;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.List;
 
@@ -296,82 +294,3 @@ public class ProductServiceApplication  implements CommandLineRunner {
 
 
 }
-
-/*
-package dev.amit.ProductService;
-
-import dev.amit.ProductService.models.Category;
-import dev.amit.ProductService.models.CategoryRepository;
-import dev.amit.ProductService.models.Price;
-import dev.amit.ProductService.models.Product;
-import dev.amit.ProductService.repository.PriceRepository;
-import dev.amit.ProductService.repository.ProductRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-
-@SpringBootApplication
-public class ProductServiceApplication implements CommandLineRunner {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceApplication.class);
-
-	private final ProductRepository productRepository;
-	private final CategoryRepository categoryRepository;
-	private final PriceRepository priceRepository;
-
-	public ProductServiceApplication(
-			ProductRepository productRepository,
-			CategoryRepository categoryRepository,
-			PriceRepository priceRepository) {
-		this.productRepository = productRepository;
-		this.categoryRepository = categoryRepository;
-		this.priceRepository = priceRepository;
-	}
-
-	public static void main(String[] args) {
-		SpringApplication.run(ProductServiceApplication.class, args);
-		LOGGER.info("* Jay Shri Ram *");
-	}
-
-	@Override
-	@Transactional
-	public void run(String... args) {
-		try {
-			// Save Category
-			Category category = new Category();
-			category.setName("Apple devices");
-			Category savedCategory = categoryRepository.save(category);
-			LOGGER.info("Saved Category: {}", savedCategory);
-
-			// Save Price
-			Price price = new Price("Rupee", 10);
-			Price savedPrice = priceRepository.save(price);
-			LOGGER.info("Saved Price: {}", savedPrice);
-
-			// Save Product
-			Product product = new Product();
-			product.setTitle("iPhone 16 Pro");
-			product.setDescription("Best product ever");
-			product.setCategory(savedCategory);
-			product.setPrice(savedPrice);
-			Product savedProduct = productRepository.save(product);
-			LOGGER.info("Saved Product: {}", savedProduct);
-
-			// Fetch and log products
-			List<Product> products = productRepository.findByTitleAndDescription("iPhone 16 Pro", "Best product ever");
-			LOGGER.info("Products with title and description: {}", products);
-
-			List<Product> rupeeProducts = productRepository.findByPrice_Currency("Rupee");
-			LOGGER.info("Products with price currency 'Rupee': {}", rupeeProducts);
-
-		} catch (Exception e) {
-			LOGGER.error("Error occurred during application execution", e);
-		}
-	}
-}
-*/
