@@ -10,15 +10,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.util.ArrayList;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 // not initialize nay unnamed bean
@@ -79,6 +82,38 @@ public class ProductControllerWebMVCTest {
         );
 
 
+    }
+
+
+    @Test
+    void createProductShouldCreateANewProduct() throws Exception {
+        GenericProductDto  productToCreate = new GenericProductDto();
+
+        productToCreate.setTitle("iphone 15 Pro Max");
+        productToCreate.setImage("Some Images");
+        productToCreate.setCategory("model phone");
+        productToCreate.setDescription("This is new iPhone 15 Pro Max");
+
+        GenericProductDto expectedProduct = new GenericProductDto();
+        expectedProduct.setId(1001L);
+        expectedProduct.setTitle("iphone 15 Pro Max");
+        expectedProduct.setImage("Some Images");
+        expectedProduct.setCategory("model phone");
+        expectedProduct.setDescription("This is new iPhone 15 Pro Max");
+
+
+        when(
+                productService.createProduct(any())
+        ).thenReturn(expectedProduct);
+
+
+        mockMvc.perform(
+                post("/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(productToCreate))
+        ).andExpect(
+                (ResultMatcher) content().string(objectMapper.writeValueAsString(expectedProduct))
+        );
     }
 }
 
