@@ -1,8 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-    <configuration default="false" type="Application" factoryName="Application">
-        <module name="ProductService"/>
-        <method v="2">
-            <option name="Make" enabled="true"/>
-        </method>
-    </configuration>
-</component>
