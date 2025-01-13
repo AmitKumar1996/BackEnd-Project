@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -81,22 +82,49 @@ public class ProductController {
 
  //localhost:8080/products/123
 // localhost:8080/product?id=123
-//    @GetMapping
-//    public List<GenericProductDto> getAllProducts() {
-//       // System.out.println();
-//        logger.info("hi all product 1");
-//
-//        List<GenericProductDto> allProduct = productService.getAllProduct();
-//
-//        return allProduct;
-//
-//        //return productService.getAllProduct();
-//        //logger.info("hi all product bye");
-//
-//
-//        // System.out.println("c1");
-//        // task 3
-//    }
+    @GetMapping
+    public ResponseEntity< List<GenericProductDto>> getAllProducts() {
+       // System.out.println();
+      //  logger.info("hi all product 1");
+
+        List<GenericProductDto> productDtos = productService.getAllProducts();
+
+        if(productDtos.isEmpty()){
+            return new ResponseEntity<>(
+                    productDtos,
+                    HttpStatus.NOT_FOUND
+            );
+        }
+
+        List<GenericProductDto> genericProductDtos = new ArrayList<>();
+
+
+        for (GenericProductDto gpd: productDtos){
+            genericProductDtos.add(gpd);
+        }
+
+        genericProductDtos.remove(genericProductDtos.get(0));
+
+
+
+
+
+
+
+        return new ResponseEntity<>(productDtos, HttpStatus.OK);
+
+
+       // List<GenericProductDto> allProduct = productService.getAllProducts();
+
+     //   return allProduct;
+
+        //return productService.getAllProduct();
+        //logger.info("hi all product bye");
+
+
+        // System.out.println("c1");
+        // task 3
+    }
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
