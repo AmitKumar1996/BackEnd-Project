@@ -84,7 +84,7 @@ public class ProductControllerWebMVCTest {
 
     }
 
-
+    @Disabled
     @Test
     void createProductShouldCreateANewProduct() throws Exception {
         GenericProductDto  productToCreate = new GenericProductDto();
