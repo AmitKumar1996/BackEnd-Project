@@ -12,6 +12,7 @@ public class UserservicetestfinalApplication {
 
 
 		System.out.println("Jay Shri Ram !");
+		System.out.println("Jay Shri Ram !");
 	}
 
 }
