@@ -49,6 +49,7 @@ public class ProductServiceApplication  implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(ProductServiceApplication.class, args);
 		System.out.println("* Jay Shri Ram *");
+		System.out.println("Jay Shri Ram !");
 	}
 
 	@Transactional
